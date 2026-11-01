@@ -183,21 +183,30 @@ tips:
     html: |2-
       <p>Вместо фразы «получилась небольшая погрешность» назовите величину,
       способ оценки и то, как она ограничивает ваш вывод.</p>
+related:
+  - 'ideal-lab-report-template-gost-online'
+  - 'indirect-measurement-error-calculation-lab-report'
+  - 'how-to-write-lab-report-conclusion-examples'
 editorExample:
-  computeVisible: false
-  compute: |2-
-    U = 5
-    I = 0.1
-    uU = 0.05
-    uI = 0.002
-    R = U / I
-    uR = sqrt((uU / I)^2 + (U * uI / I^2)^2)
-    relative = 100 * uR / R
-  latex: |2-
-    \section*{Закон Ома}
-    Входы независимы; $u$ -- стандартные неопределенности.
-    \[U=${U}\text{ В},\quad I=${I}\text{ А}\]
-    \[u_U=${uU}\text{ В},\quad u_I=${uI}\text{ А}\]
-    \[R=U/I=${R}\text{ Ом}\]
-    \[u_R=\sqrt{(u_U/I)^2+(Uu_I/I^2)^2}=${uR}\text{ Ом}\]
-    \[100u_R/R=${relative}\%\]
+  - type: 'computational'
+    text: |2-
+      U = 5
+      I = 0.1
+      uU = 0.05
+      uI = 0.002
+      R = U / I
+      uR = sqrt((uU / I)^2 + (U * uI / I^2)^2)
+      relative = 100 * uR / R
+    parameters:
+      visible: false
+  - type: 'latex'
+    text: |2-
+      \section*{Закон Ома}
+      Входы независимы; $u$ -- стандартные неопределенности.
+      \[U=${U}\text{ В},\quad I=${I}\text{ А}\]
+      \[u_U=${uU}\text{ В},\quad u_I=${uI}\text{ А}\]
+      \[R=U/I=${R}\text{ Ом}\]
+      \[u_R=\sqrt{(u_U/I)^2+(Uu_I/I^2)^2}=${uR}\text{ Ом}\]
+      \[100u_R/R=${relative}\%\]
+    parameters:
+      visible: true

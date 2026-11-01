@@ -159,7 +159,7 @@ sections:
       <p><a href="/assets/examples/lab-work-admission-form.tex" download>Скачать полный бланк в формате .tex</a>.
       Откройте файл в LaTeX-редакторе или вставьте код в LaTeX-сегмент Labkeeper,
       заполните сведения о работе и соберите PDF. Кнопка «Просмотреть пример» открывает
-      компактную форму с теми же основными полями; названия в ней сокращены.</p>
+      полный бланк, приведенный выше и доступный для скачивания.</p>
       <p>В таблице <code>tabularx</code> правая колонка занимает оставшуюся ширину листа,
       а <code>\rule{0pt}{18mm}</code> оставляет высоту для записей.
       Если нужны развернутые ответы, увеличьте высоту строки или приложите отдельный лист.
@@ -198,30 +198,55 @@ tips:
     html: |2-
       <p>Если преподаватель проверяет несколько вопросов, удобнее отвести место для их
       номеров и коротких замечаний, чем ограничиваться одной общей строкой.</p>
+related:
+  - 'lab-report-title-page-gost-template'
+  - 'ideal-lab-report-template-gost-online'
+  - 'lab-report-defense-preparation'
 editorExample:
-  latex: |2-
-    \documentclass[a4paper,14pt]{extarticle}
-    \usepackage[T2A]{fontenc}
-    \usepackage[russian]{babel}
-    \usepackage{tempora,tabularx}
-    \usepackage[left=30mm,right=15mm,vmargin=20mm]{geometry}
-    \pagestyle{empty}
-    \setlength{\parindent}{0pt}
-    \newcommand{\row}[1]{#1&\rule{0pt}{15mm}\\\hline}
-    \begin{document}
-    \begin{center}\textbf{Бланк допуска}\end{center}
-    \begin{tabularx}{\linewidth}{|p{.35\linewidth}|X|}\hline
-    \row{Дисциплина}
-    \row{Работа №, тема}
-    \row{ФИО, группа}
-    \row{Оборудование}
-    \row{Подготовка}
-    \row{Вопросы}
-    \end{tabularx}\par
-    \vspace{6mm}
-    \setlength{\parskip}{8pt}
-    Решение: \hrulefill\par
-    Допущен / доработка / не допущен.\par
-    Преподаватель: \hrulefill\par
-    Подпись: \hrulefill\quad Дата: \hrulefill
-    \end{document}
+  - type: 'latex'
+    text: |2-
+      \documentclass[a4paper,14pt]{extarticle}
+      \usepackage[T2A]{fontenc}
+      \usepackage[utf8]{inputenc}
+      \usepackage[russian]{babel}
+      \usepackage{tempora,tabularx,array}
+      \usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+      \pagestyle{empty}
+      \setlength{\parindent}{0pt}
+      \renewcommand{\arraystretch}{1.3}
+      \newcommand{\blank}{\rule{0pt}{10mm}}
+      \begin{document}
+      \begin{center}
+          Университет: \rule{9cm}{0.4pt}\\[6pt]
+          Кафедра: \rule{10cm}{0.4pt}\\[14pt]
+          \textbf{БЛАНК ДОПУСКА}\\[4pt]
+          к выполнению лабораторной работы
+      \end{center}
+      \medskip
+      \begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.32\linewidth}|X|}
+          \hline
+          Дисциплина & \blank \\ \hline
+          Номер работы & \blank \\ \hline
+          Тема работы & \rule{0pt}{14mm} \\ \hline
+          ФИО студента & \blank \\ \hline
+          Группа & \blank \\ \hline
+          Оборудование & \rule{0pt}{14mm} \\ \hline
+          Подготовка: теория, схема, расчеты & \rule{0pt}{18mm} \\ \hline
+          Контрольные вопросы & \rule{0pt}{18mm} \\ \hline
+      \end{tabularx}\par
+      \vspace{6mm}
+
+      \textbf{Заполняет преподаватель после проверки}
+
+      Решение: \rule{10cm}{0.4pt}\\[10pt]
+      Варианты: допущен / требуется подготовка / не допущен.\\[10pt]
+      Замечания: \rule{11cm}{0.4pt}\\[10pt]
+      Преподаватель (ФИО): \rule{8cm}{0.4pt}\\[10pt]
+      Подпись: \rule{4cm}{0.4pt}\hfill Дата: \rule{4cm}{0.4pt}
+
+      \medskip
+      {\small Учебный образец. Форму и порядок допуска уточните на кафедре.
+      Бланк не заменяет документы об инструктаже.}
+      \end{document}
+    parameters:
+      visible: true

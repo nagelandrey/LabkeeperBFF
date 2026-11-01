@@ -177,8 +177,8 @@ sections:
       \end{tabular}
       \end{center}</code></pre>
       </div>
-      <p>В примере по кнопке таблица сокращена до сумм на партию,
-      а себестоимость изделия выведена отдельной строкой.</p>
+      <p>Кнопка «Просмотреть пример» открывает эти вычисления и полную таблицу
+      с затратами на партию и на одно изделие.</p>
       <p><strong>Пример вывода:</strong> «При выпуске 100 изделий производственная
       себестоимость составляет 53 000 руб., или 530 руб. на изделие. С учетом расходов
       на продажу полная себестоимость равна 560 руб. на изделие. Материалы и прямая
@@ -212,40 +212,59 @@ tips:
     html: |2-
       <p>Сначала запишите объем, нормы и цены, затем зависимые выражения.
       Так при замене исходных данных не придется исправлять одинаковые суммы в разных местах.</p>
+related:
+  - 'diploma-economic-efficiency-calculation-example'
+  - 'latex-diploma-gost'
+  - 'formula-numbering-lab-reports-gost'
 editorExample:
-  computeVisible: false
-  compute: |2-
-    Q = 100
-    m = 2
-    p = 120
-    t = 0.5
-    w = 400
-    r = 0.30
-    overhead = 90000
-    wages = 600000
-    selling = 3000
-    materials = Q * m * p
-    labor = Q * t * w
-    charges = labor * r
-    rate = overhead / wages
-    allocated = rate * labor
-    production = materials + labor + charges + allocated
-    unitProduction = production / Q
-    total = production + selling
-    unitCost = total / Q
-  latex: |2-
-    \section*{Себестоимость}
-    Партия: ${Q} шт. Суммы в рублях.
-    \begin{center}
-    \begin{tabular}{lr}
-    Материалы & ${materials} \\
-    Оплата труда & ${labor} \\
-    Начисления & ${charges} \\
-    Косвенные & ${allocated} \\
-    Производственная & ${production} \\
-    Продажа & ${selling} \\
-    Полная & ${total}
-    \end{tabular}
-    \end{center}
-    На изделие: ${unitProduction} руб. (производственная),
-    ${unitCost} руб. (полная).
+  - type: 'computational'
+    text: |2-
+      // Объем, расход материала, цена, трудоемкость и ставка
+      Q = 100
+      m = 2
+      p = 120
+      t = 0.5
+      w = 400
+      // Условный коэффициент начислений
+      r = 0.30
+      // Расходы и база распределения за один период, руб.
+      overhead = 90000
+      wages = 600000
+      selling = 3000
+      materials = Q * m * p
+      labor = Q * t * w
+      charges = labor * r
+      rate = overhead / wages
+      allocated = rate * labor
+      production = materials + labor + charges + allocated
+      unitProduction = production / Q
+      total = production + selling
+      unitCost = total / Q
+      unitMaterials = materials / Q
+      unitLabor = labor / Q
+      unitCharges = charges / Q
+      unitAllocated = allocated / Q
+      unitSelling = selling / Q
+    parameters:
+      visible: false
+  - type: 'latex'
+    text: |2-
+      \section*{Калькуляция себестоимости}
+      Расчет для партии из ${Q} изделий.
+      \begin{center}
+      \begin{tabular}{lrr}
+      \hline
+      Статья затрат & На партию, руб. & На изделие, руб. \\
+      \hline
+      Материалы & ${materials} & ${unitMaterials} \\
+      Оплата труда & ${labor} & ${unitLabor} \\
+      Начисления & ${charges} & ${unitCharges} \\
+      Косвенные расходы & ${allocated} & ${unitAllocated} \\
+      Производственная & ${production} & ${unitProduction} \\
+      Расходы на продажу & ${selling} & ${unitSelling} \\
+      Полная & ${total} & ${unitCost} \\
+      \hline
+      \end{tabular}
+      \end{center}
+    parameters:
+      visible: true

@@ -192,26 +192,35 @@ tips:
     html: |2-
       <p>Не подменяйте выбор целого количества светильников округлением отображения чисел.
       После выбора оборудования пересчитайте результат с его паспортными характеристиками.</p>
+related:
+  - 'latex-diploma-gost'
+  - 'diploma-conclusion-structure-example'
+  - 'diploma-economic-efficiency-calculation-example'
 editorExample:
-  computeVisible: false
-  compute: |2-
-    a = 8
-    b = 6
-    target = 300
-    flux = 4000
-    eta = 0.60
-    k = 1.50
-    z = 1.10
-    N = 10
-    area = a * b
-    needed = target * area * k * z / (flux * eta)
-    calculated = N * flux * eta / (area * k * z)
-    difference = calculated - target
-  latex: |2-
-    \section*{Расчет освещения}
-    $S=${area}$ м$^2$, $E_0=${target}$ лк, $\Phi=${flux}$ лм.
-    $\eta=${eta}$, $k=${k}$, $z=${z}$.
-    \[N_0=\frac{E_0Skz}{\Phi\eta}=${needed}\]
-    Принято $N=${N}$ светильников.
-    \[E=\frac{N\Phi\eta}{Skz}=${calculated}\text{ лк}\]
-    Разность с заданием: ${difference} лк.
+  - type: 'computational'
+    text: |2-
+      a = 8
+      b = 6
+      target = 300
+      flux = 4000
+      eta = 0.60
+      k = 1.50
+      z = 1.10
+      N = 10
+      area = a * b
+      needed = target * area * k * z / (flux * eta)
+      calculated = N * flux * eta / (area * k * z)
+      difference = calculated - target
+    parameters:
+      visible: false
+  - type: 'latex'
+    text: |2-
+      \section*{Расчет освещения}
+      $S=${area}$ м$^2$, $E_0=${target}$ лк, $\Phi=${flux}$ лм.
+      $\eta=${eta}$, $k=${k}$, $z=${z}$.
+      \[N_0=\frac{E_0Skz}{\Phi\eta}=${needed}\]
+      Принято $N=${N}$ светильников.
+      \[E=\frac{N\Phi\eta}{Skz}=${calculated}\text{ лк}\]
+      Разность с заданием: ${difference} лк.
+    parameters:
+      visible: true
