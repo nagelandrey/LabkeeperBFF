@@ -144,8 +144,8 @@ sections:
       <a href="/blog/latex-geometry-margins-gost">руководстве по настройке полей страницы</a>.
       Логотип и рамка нужны только по требованию кафедры: для технических бланков смотрите
       статью про <a href="/blog/latex-eskd">рамки и штампы ЕСКД</a>.</p>
-      <p>Кнопка «Просмотреть пример» открывает сокращенный самостоятельный документ с титульным
-      листом. Полный шаблон с командами для замены данных приведен выше. После проверки титула
+      <p>Кнопка «Просмотреть пример» открывает полный шаблон, приведенный выше,
+      с командами для замены данных. После проверки титула
       добавьте цель, ход работы, расчеты и выводы перед <code>\end{document}</code>.</p>
   - id: 'numbering'
     title: 'Номер страницы на титульном листе'
@@ -186,29 +186,55 @@ tips:
     html: |2-
       <p>Проверьте переносы длинных названий и место для подписей в собранном PDF.
       Не используйте пробелы для выравнивания: для блока исполнителей в шаблоне есть таблица.</p>
+related:
+  - 'ideal-lab-report-template-gost-online'
+  - 'latex-titlepage'
+  - 'diploma-page-numbering-second-page'
 editorExample:
-  latex: |2-
-    \documentclass[a4paper,14pt]{extarticle}
-    \usepackage[T2A]{fontenc}
-    \usepackage[utf8]{inputenc}
-    \usepackage[russian]{babel}
-    \usepackage{tempora}
-    \usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
-    \begin{document}
-    \begin{titlepage}
-    \centering
-    Университет\par Кафедра физики\par
-    \vfill
-    \textbf{ОТЧЕТ}\par
-    по лабораторной работе № 1\par
-    Физика: закон Ома\par
-    \vfill
-    \begin{flushright}
-    Выполнил: Иванов И. И., Ф-101\par
-    Проверил: Петров П. П.
-    \end{flushright}
-    \vfill Москва --- 2026
-    \end{titlepage}
-    \setcounter{page}{2}
-    \section*{Цель}Проверить закон Ома.
-    \end{document}
+  - type: 'latex'
+    text: |2-
+      \documentclass[a4paper,14pt]{extarticle}
+      \usepackage[T2A]{fontenc}
+      \usepackage[utf8]{inputenc}
+      \usepackage[russian]{babel}
+      \usepackage{tempora}
+      \usepackage[left=30mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+      \newcommand{\university}{Название университета}
+      \newcommand{\department}{Кафедра физики}
+      \newcommand{\discipline}{Физика}
+      \newcommand{\labnumber}{1}
+      \newcommand{\labtopic}{Проверка закона Ома}
+      \newcommand{\studentname}{Иванов Иван Иванович}
+      \newcommand{\studentgroup}{Ф-101}
+      \newcommand{\teachername}{доцент Петров Петр Петрович}
+      \newcommand{\workcity}{Москва}
+      \newcommand{\workyear}{2026}
+      \begin{document}
+      \begin{titlepage}
+          \centering
+          \university\par
+          \department\par
+          \vfill
+          {\bfseries ОТЧЕТ\par}
+          по лабораторной работе №~\labnumber\par
+          по дисциплине «\discipline»\par
+          \medskip
+          Тема: «\labtopic»\par
+          \vfill
+          \begin{flushright}
+              \begin{tabular}{p{0.65\textwidth}}
+                  Выполнил: студент группы \studentgroup \\
+                  \studentname \\[12pt]
+                  Проверил: \teachername \\[12pt]
+                  Подпись: \rule{3cm}{0.4pt}
+              \end{tabular}
+          \end{flushright}
+          \vfill
+          \workcity{} --- \workyear\par
+      \end{titlepage}
+      \setcounter{page}{2}
+      \section*{Цель работы}
+      Проверить зависимость силы тока от напряжения.
+      \end{document}
+    parameters:
+      visible: true

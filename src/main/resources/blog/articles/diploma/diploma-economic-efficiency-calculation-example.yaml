@@ -186,28 +186,37 @@ tips:
     html: |2-
       <p>Уменьшите объем заявок или увеличьте расходы на сопровождение и сравните показатели.
       Укажите в дипломе, какие исходные данные сильнее всего влияют на вывод.</p>
+related:
+  - 'product-cost-calculation-example'
+  - 'latex-diploma-gost'
+  - 'formula-numbering-lab-reports-gost'
 editorExample:
-  computeVisible: false
-  compute: |2-
-    Q = 10000
-    before = 150
-    after = 138
-    extra = 30000
-    investment = 180000
-    rate = 0.10
-    ratePercent = rate * 100
-    savings = (before - after) * Q
-    annual = savings - extra
-    payback = investment / annual
-    pv1 = annual / (1 + rate)
-    pv2 = annual / (1 + rate)^2
-    pv3 = annual / (1 + rate)^3
-    npv = pv1 + pv2 + pv3 - investment
-  latex: |2-
-    \section*{Экономическая эффективность}
-    $Q=${Q}$ заявок/год; $c_0=${before}$ и $c_1=${after}$ руб./заявку.
-    Сопровождение $C=${extra}$ руб./год; вложения $I=${investment}$ руб.
-    \[E=(c_0-c_1)Q-C=${annual}\text{ руб./год}\]
-    \[T=\frac{I}{E}=${payback}\text{ года}\]
-    За три года при ставке $r=${ratePercent}\%$:
-    \[NPV=-I+\sum_{t=1}^{3}\frac{E}{(1+r)^t}=${npv}\text{ руб.}\]
+  - type: 'computational'
+    text: |2-
+      Q = 10000
+      before = 150
+      after = 138
+      extra = 30000
+      investment = 180000
+      rate = 0.10
+      ratePercent = rate * 100
+      savings = (before - after) * Q
+      annual = savings - extra
+      payback = investment / annual
+      pv1 = annual / (1 + rate)
+      pv2 = annual / (1 + rate)^2
+      pv3 = annual / (1 + rate)^3
+      npv = pv1 + pv2 + pv3 - investment
+    parameters:
+      visible: false
+  - type: 'latex'
+    text: |2-
+      \section*{Экономическая эффективность}
+      $Q=${Q}$ заявок/год; $c_0=${before}$ и $c_1=${after}$ руб./заявку.
+      Сопровождение $C=${extra}$ руб./год; вложения $I=${investment}$ руб.
+      \[E=(c_0-c_1)Q-C=${annual}\text{ руб./год}\]
+      \[T=\frac{I}{E}=${payback}\text{ года}\]
+      За три года при ставке $r=${ratePercent}\%$:
+      \[NPV=-I+\sum_{t=1}^{3}\frac{E}{(1+r)^t}=${npv}\text{ руб.}\]
+    parameters:
+      visible: true
